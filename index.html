@@ -2,37 +2,75 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="Deployment-Version" content="3.1.6"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Deployment-Version" content="3.1.6" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="text/javascript" src="/KDB/js/kdb.js"></script>
     <script type="text/javascript" src="/SharedFiles/Files/includes/kdb.js"></script>
+    <script>
+      function allowLogin() {
+        // Display login message if the function exists
+        if (typeof displayKDBLoginMessage === "function") {
+          displayKDBLoginMessage();
+        }
+
+        // Hide the JavaScript-disabled message
+        const jsMessage = document.getElementById("jsNotOnMessageId");
+        if (jsMessage) {
+          jsMessage.style.visibility = "hidden";
+        }
+
+        // Show the login form
+        const formDiv = document.querySelector(".login-container");
+        if (formDiv) {
+          formDiv.style.display = "block";
+        }
+
+        // Focus management
+        const usernameField = document.getElementById("username");
+        const passwordField = document.getElementById("password");
+        if (usernameField && usernameField.value !== "") {
+          passwordField?.focus();
+        } else {
+          usernameField?.focus();
+        }
+
+        // Enable page scrolling
+        document.body.style.overflow = "auto";
+      }
+    </script>
     <title>KDB | Please Login</title>
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="./kdb-logo1.bmp"
-    />
+    <link rel="icon" type="image/png" sizes="16x16" href="./kdb-logo1.bmp" />
     <link rel="stylesheet" href="./style.css" />
   </head>
-  <body>
-      <div class="login-container">
-        <h1>Welcome to KDB</h1>
-        <form action="/login" method="POST" class="login-form">
-            <div class="form-group">
-                <label for="username">Network User ID</label>
-                <input type="text" id="username" name="username" placeholder="Enter your Network ID" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-            </div>
-            <button type="submit" class="login-btn">Login</button>
-        </form>
+  <body onload="allowLogin();">
+    <!-- JavaScript-disabled message -->
+    <div id="jsNotOnMessageId" style="visibility: visible; text-align: center; margin: 20px;">
+      <p style="color: red; font-size: 1.2rem;">
+        <b>JavaScript is not enabled.<br>
+        Please enable it and re-start Internet Explorer or contact the Corporate IS Help Desk at 516-803-HELP (4357).</b>
+      </p>
     </div>
+
+    <!-- Login form -->
+    <div class="login-container" style="display: none;">
+      <h1>Welcome to KDB</h1>
+      <form action="/login" method="POST" class="login-form">
+        <div class="form-group">
+          <label for="username">Network User ID</label>
+          <input type="text" id="username" name="username" placeholder="Enter your Network ID" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required />
+        </div>
+        <button type="submit" class="login-btn">Login</button>
+      </form>
+    </div>
+
+    <!-- Footer -->
     <footer class="footer">
-        <img src="kdb-logo2.png" alt="KDB Logo" class="footer-logo">
-        <p class="version">Version: 3.1.6</p>
+      <img src="kdb-logo2.png" alt="KDB Logo" class="footer-logo" />
+      <p class="version">Version: 3.1.6</p>
     </footer>
   </body>
 </html>
