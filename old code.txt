@@ -1,0 +1,113 @@
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<title>Please Login</title>
+<meta name="Deployment-Version" content="3.1.6" />
+<link type="text/css" rel="stylesheet" href="/SharedFiles/Files/includes/kdbstylenew.css">
+<script type="text/javascript" src="/KDB/js/kdb.js"></script>
+<script type="text/javascript" src="/SharedFiles/Files/includes/kdb.js"></script>
+
+<Script Language = "JavaScript">
+
+  function allowLogin() {
+    displayKDBLoginMessage();
+    document.all.jsNotOnMessageId.style.visibility = "hidden";
+    document.all.form.style.display = "block";
+    if (eval(document.getElementById("password"))){
+      var password = document.getElementById("password");
+      if(document.getElementById("novellId").value!=null && document.getElementById("novellId").value!=''){
+      		password.focus();
+      }else{
+    	  document.getElementById("novellId").focus();
+      }
+    	  
+    }
+    document.body.scroll = "yes";
+  }
+
+</script>
+
+
+</head>
+
+
+<body onload="javascript:allowLogin();">
+
+<br>
+<table width="100%">
+	<tr>
+		<td colspan="2" align="right"><span class="versionNumber">Version: 3.1.6</span></td>
+	</tr>
+  <tr>
+    <td align="left" width="50%"><img src="/SharedFiles/Files/images/kdb-logo.bmp"></td>
+    <td align="right"><img src="/SharedFiles/Sales/images/sales-logo.png"></td>
+  </tr>
+</table>
+
+
+<br>
+<br>
+
+
+<div id="form" style="display: none;" >
+<form name="loginForm" method="post" action="/KDB/NovellLoginServlet" method="POST">
+
+<table align="center" border="0" >
+<tr>
+    <td colspan="2" align="center">
+	    <font size=+1><b>Please Login:</b></font>
+	</td>
+</tr>
+<tr>
+    <td align="right">
+	    <b>Network User Id:</b>
+	</td>
+	<td>
+	    <input type="text" name="novellId" maxlength="11" size="15" tabindex="0" value="msalahah" />
+	</td>
+</tr>
+<tr>
+    <td align="right">
+	    <b>Password:</b>
+	</td>
+    <td>
+	    <input type="password" name="password" size="15"  />
+	</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td>
+		<input type="submit" value="Login" />
+	</td>
+</tr>
+<tr>
+	<td colspan="2" align="center">
+		
+	</td>
+</tr>
+</table>
+</form>
+<br>
+<div id="kdbLoginMessage"></div>
+</div>
+
+<div id="jsNotOnMessageId" style="visibility: visible;" >
+
+<font color="red" size="+2"><b>JavasScript is not enabled.<br>
+Please enable it and re-start Internet Explorer or contact the Corporate IS Help Desk at 516-803-HELP(4357).
+ </b>
+ </font>
+</div>
+
+</body>
+</html>
